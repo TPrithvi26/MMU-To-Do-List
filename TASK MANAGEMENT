@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To-Do List with Calendar</title>
+    <link href='https://www.mmu.edu.my/wp-content/uploads/2023/07/Academic-Calendar-2023_2024_updated18march24.pdf' rel='stylesheet' />
+    <script src='https://www.mmu.edu.my/wp-content/uploads/2023/07/Academic-Calendar-2023_2024_updated18march24.pdf'></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var calendarEl = document.getElementById('calendar');
+
+            var calendar = new FullCalendar.Calendar(calendarEl, {
+                initialView: 'dayGridMonth',
+                events: [
+                    // Add your events here
+                ]
+            });
+
+            calendar.render();
+        });
+    </script>
+</head>
+<body>
+    <h1>To-Do List with Calendar</h1>
+    <div id='calendar'></div>
+    <h2>To-Do List</h2>
+    <ul>
+        {% for task_index, task in enumerate(tasks) %}
+        <li>{{ task }} <a href="/delete/{{ task_index }}">Delete</a></li>
+        {% endfor %}
+    </ul>
+    <form action="/add" method="post">
+        <input type="text" name="task" placeholder="Enter task">
+        <button type="submit">Add Task</button>
+    </form>
+</body>
+</html>
