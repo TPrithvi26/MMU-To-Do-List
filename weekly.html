@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Simple To Do List</title>
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&display=swap" rel="stylesheet">
+    <!-- Font Awesome CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css">
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="task.css">
+    <style>
+        /* Additional CSS for photo gallery */
+        body {
+            margin: 0;
+            padding: 0;
+            background: url('file:///C:/Users/User/Downloads/compressed_1f6c97428b2244f5128e486cc7e90062.webp') no-repeat center center fixed;
+            background-size: cover;
+            font-family: 'Poppins', sans-serif;
+            color: #fff;
+        }
+        .container {
+            margin: 0 auto;
+            max-width: 800px;
+            padding: 20px;
+            background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+            border-radius: 10px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            background-color: rgba(255, 255, 255, 0.1); /* Semi-transparent background for table */
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+            color: #fff; /* Text color */
+        }
+        th {
+            background-color: #333; /* Header background color */
+        }
+        #newtask {
+            background-color: rgba(255, 255, 255, 0.1); /* Semi-transparent background for task input area */
+            padding: 10px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+        #newtask input[type="text"], #newtask input[type="date"], #newtask select, #newtask button {
+            margin-right: 10px;
+        }
+        #newtask input[type="text"], #newtask input[type="date"], #newtask select {
+            padding: 8px;
+            border: none;
+            border-radius: 5px;
+            background-color: rgba(255, 255, 255, 0.7); /* Semi-transparent background for input fields */
+            color: #333; /* Text color */
+        }
+        #push {
+            padding: 8px 16px;
+            border: none;
+            border-radius: 5px;
+            background-color: #333; /* Button background color */
+            color: #fff; /* Button text color */
+            cursor: pointer;
+        }
+        #push:hover {
+            background-color: #555; /* Button background color on hover */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div id="newtask">
+            <input type="text" id="taskInput" placeholder="Task to be done..">
+            <input type="date" id="dueDateInput"> <!-- Added input for due date -->
+            <select id="priorityInput"> <!-- Added select for priority level -->
+                <option value="low">Low</option>
+                <option value="medium">Medium</option>
+                <option value="high">High</option>
+            </select>
+            <button id="push">Add</button>
+        </div>
+        <table id="taskTable">
+            <thead>
+                <tr>
+                    <th>Task</th>
+                    <th>Priority</th>
+                    <th>Due Date</th>
+                </tr>
+            </thead>
+            <tbody id="taskTableBody"></tbody>
+        </table>
+    </div>
+
+    <!-- Script -->
+    <script src="script.js"></script>
+</body>
+</html>
