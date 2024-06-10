@@ -78,17 +78,17 @@
 
   <div class="container">
     <h1>Login</h1>
-    <form action="http://localhost:3000/login.php" method="post">
+    <form action="db.php" method="post">
       <fieldset>
-        <label>Email</label>
-        <input type="email" name="loginEmail" placeholder="Email" required>
+        <label>Username</label>
+        <input type="text" name="username" placeholder="Username" required>
       </fieldset>
       <fieldset>
         <label>Password</label>
         <input type="password" name="loginPassword" placeholder="Password" required>
       </fieldset>
       <fieldset>
-        <button type="submit" name="loginSubmit">Login</button>
+        <input type="submit" name="loginSubmit" value="Login">
       </fieldset>
     </form>
 

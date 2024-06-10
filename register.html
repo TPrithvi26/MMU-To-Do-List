@@ -79,34 +79,35 @@
 
   <div class="container">
     <h1>Fill in your details</h1>
-    <form action="http://localhost:3000/register.php" method="post">
+    <form action="db.php" method="post">
+      <fieldset>
+        <label>User Name</label>
+        <input type="text" id="username" name="username" placeholder="User Name" required>
+      </fieldset>
       <fieldset>
         <label>First Name</label>
-        <input type="text" name="username" placeholder="First Name" required>
+        <input type="text" id="firstname" name="firstname" placeholder="First Name" required>
       </fieldset>
       <fieldset>
         <label>Second Name</label>
-        <input type="text" name="lastname" placeholder="Second Name" required>
+        <input type="text" id="lastname" name="lastname" placeholder="Second Name" required>
       </fieldset>
       <fieldset>
         <label>Phone Number</label>
-        <input type="tel" name="phone" placeholder="Phone Number" required>
+        <input type="tel" id="phone" name="phone" placeholder="Phone Number" required>
       </fieldset>
       <fieldset>
         <label>Email</label>
-        <input type="email" name="email" placeholder="Email" required>
+        <input type="email" id="email" name="email" placeholder="Email" required>
       </fieldset>
       <fieldset>
         <label>Password</label>
-        <input type="password" name="password" placeholder="Password" required>
+        <input type="password" id="passkey" name="passkey" placeholder="Password" required>
       </fieldset>
       <fieldset>
-        <button type="submit" name="submit">Submit</button>
+        <input type="submit" id="register" name="register" value="Register">
       </fieldset>
     </form>
-    
-
-    
 
     <p>Already have an account?<a href="login.html" class="login-link">Login here</a></p>
   </div>
