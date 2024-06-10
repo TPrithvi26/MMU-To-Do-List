@@ -13,7 +13,6 @@ if (!$con) {
     die("Connection failed: " . mysqli_connect_error());
 }
 
-// SQL query to select data from database
 $id = $_REQUEST['id'];
 $sql = "SELECT * FROM weekly WHERE id = '$id'";
 $result = mysqli_query($con, $sql);

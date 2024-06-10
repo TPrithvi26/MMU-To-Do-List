@@ -1,4 +1,3 @@
-<!-- PHP code to establish connection with the localserver -->
 <?php
  
   // Database details
@@ -15,7 +14,6 @@
       die("Connection failed: " . mysqli_connect_error());
   }
  
-  // SQL query to select data from database
   session_start();
   $userId = $_SESSION['userId'];
   $sql = "SELECT * FROM weekly WHERE userid = '$userId'";

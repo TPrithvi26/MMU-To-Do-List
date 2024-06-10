@@ -22,10 +22,8 @@
         $email = $_POST['email'];
         $passkey = $_POST['passkey'];
 
-        // using sql to create a data entry query
         $sql = "INSERT INTO user (username, firstname, lastname, phone, email, passkey) VALUES ('$username', '$firstname', '$lastname', '$phone', '$email', '$passkey')";
     
-        // send query to the database to add values and confirm if successful
         $rs = mysqli_query($con, $sql);
         if($rs)
         {
@@ -38,7 +36,6 @@
 
     }
 
-    // Getting values from the HTML form
     if(isset($_POST['loginSubmit'])) {
         $username = $_POST['username'];
         $password = $_POST['loginPassword'];
@@ -49,12 +46,11 @@
 
         if(mysqli_num_rows($result) == 1) {
 
-            // Fetch user details
             session_start();
             $row = mysqli_fetch_assoc($result);
             $_SESSION['userId'] = $row['id'];
 
-            // Redirect to a welcome page or dashboard
+            // Redirect to dashboard
             header('Location: dashboard.html');
         } else {
             echo "Invalid username or password";
@@ -70,10 +66,8 @@
         $subject = $_POST['subject'];
         $userid = $_SESSION['userId'];
 
-        // using sql to create a data entry query
         $sql = "INSERT INTO weekly (task, due, priority, userid, category, completed) VALUES ('$task', '$due', '$priority', '$userid', '$subject', 0)";
     
-        // send query to the database to add values and confirm if successful
         $rs = mysqli_query($con, $sql);
         if($rs)
         {
@@ -124,10 +118,8 @@
         $subject = $_POST['subject'];
         $id = $_POST['id'];
 
-        // using sql to create a data entry query
         $sql = "update weekly set task = '$task', due = '$due', priority = '$priority', category = '$subject', completed = 0 where id = '$id'";
     
-        // send query to the database to add values and confirm if successful
         $rs = mysqli_query($con, $sql);
         if($rs)
         {
