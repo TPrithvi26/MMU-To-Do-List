@@ -21,6 +21,7 @@
 
   $subjectFilter = 'all';
   $priorityFilter = 'all';
+  $today = date("Y-m-d");
 
   // Close connection
   mysqli_close($con);
@@ -104,6 +105,7 @@ if(isset($_POST['subject']))
 <th><strong>Priority</strong></th>
 <th><strong>Subject</strong></th>
 <th><strong>Completion</strong></th>
+<th><strong>Overdue</strong></th>
 </tr>
 </thead>
 <tbody>
@@ -137,6 +139,13 @@ while($row = mysqli_fetch_assoc($result)) { ?>
         echo "Incomplete";
     } else {
         echo "Completed";
+    }
+ ?></td>
+ <td align="center"><?php 
+    if (date($row['due']) <= $today) {
+        echo "Yes";
+    } else {
+        echo "No";
     }
  ?></td>
 <td align="center">
