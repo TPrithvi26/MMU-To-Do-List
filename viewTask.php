@@ -19,6 +19,69 @@
   $sql = "SELECT * FROM weekly WHERE userid = '$userId'";
   $result = mysqli_query($con, $sql);
 
+
+    $tempSubjectArts = 'Arts';
+    $tempSubjectLiterature = 'Literature';
+    $tempSubjectComputerScience = 'Computer Science';
+    $tempSubjectMathematics = 'Mathematics';
+
+    $tempSubjectArtsCount = 0;
+    $tempSubjectLiteratureCount = 0;
+    $tempSubjectComputerScienceCount = 0;
+    $tempSubjectMathematicsCount = 0;
+    
+    $rows = array();
+
+    while($data = mysqli_fetch_assoc($result)){
+        $temp = array();
+        $tempSubject = 'default';
+        if ($data['category'] == 'arts') {
+            $tempSubjectArtsCount = $tempSubjectArtsCount + 1;
+        } elseif ($data['category'] == 'literature') {
+            $tempSubjectLiteratureCount = $tempSubjectLiteratureCount + 1;
+        } elseif ($data['category'] == 'computerScience') {
+            $tempSubjectComputerScienceCount = $tempSubjectComputerScienceCount + 1;
+        } elseif ($data['category'] == 'mathematics') {
+            $tempSubjectMathematicsCount = $tempSubjectMathematicsCount + 1;
+        }
+    }
+    $temp = array();
+    $temp[] = array('v' => $tempSubjectArts . ' - ' . $tempSubjectArtsCount);
+    $temp[] = array('v' => $tempSubjectArtsCount);
+    $rows[] = array('c' => $temp);
+
+    $temp = array();
+    $temp[] = array('v' => $tempSubjectLiterature . ' - ' . $tempSubjectLiteratureCount);
+    $temp[] = array('v' => $tempSubjectLiteratureCount);
+    $rows[] = array('c' => $temp);
+
+    $temp = array();
+    $temp[] = array('v' => $tempSubjectComputerScience . ' - ' . $tempSubjectComputerScienceCount);
+    $temp[] = array('v' => $tempSubjectComputerScienceCount);
+    $rows[] = array('c' => $temp);
+
+    $temp = array();
+    $temp[] = array('v' => $tempSubjectMathematics . ' - ' . $tempSubjectMathematicsCount);
+    $temp[] = array('v' => $tempSubjectMathematicsCount);
+    $rows[] = array('c' => $temp);
+
+    $result = mysqli_query($con, $sql);
+
+    while($data = mysqli_fetch_assoc($result)){
+        $table = array();
+        $table['cols'] = array(
+            array('label' => 'Subject', 'type' => 'string'),
+            array('label' => 'Count', 'type' => 'number')
+        );
+        $table['rows'] = $rows;
+        $jsonTable = json_encode($table);
+        break;
+    }
+
+    $result = mysqli_query($con, $sql);
+
+    
+
   $subjectFilter = 'all';
   $priorityFilter = 'all';
   $today = date("Y-m-d");
@@ -31,6 +94,19 @@
 <html>
 <head>
 <meta charset="utf-8">
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script type="text/javascript">
+google.charts.load('current', {'packages':['corechart']});
+google.charts.setOnLoadCallback(drawChart);
+function drawChart() {
+    var data = new google.visualization.DataTable(<?php echo $jsonTable; ?>);
+    var options = {'title':'Subject',
+                    'width':500,
+                    'height':400};
+    var chart = new google.visualization.PieChart(document.getElementById('chart_div'));
+    chart.draw(data, options);
+}
+</script>
 <title>View Tasks</title>
 <link rel="stylesheet" href="css/style.css" />
 </head>
@@ -63,7 +139,7 @@ if(isset($_POST['subject']))
         $sql = "SELECT * FROM weekly WHERE userid = '$userId'";
     } 
     else {
-        $sql = "SELECT * FROM weekly WHERE category = '$subject'";
+        $sql = "SELECT * FROM weekly WHERE userid = '$userId' && category = '$subject'";
     }
 
     if ($priority != 'all') {
@@ -161,5 +237,6 @@ while($row = mysqli_fetch_assoc($result)) { ?>
 </tbody>
 </table>
 </div>
+<div id="chart_div"></div>
 </body>
 </html>

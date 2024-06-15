@@ -19,10 +19,11 @@
         $firstname = $_POST['firstname'];
         $lastname = $_POST['lastname'];
         $phone = $_POST['phone'];
+        $faculty = $_POST['faculty'];
         $email = $_POST['email'];
-        $passkey = $_POST['passkey'];
+        $passkey = hash('ripemd160', $_POST['passkey']);
 
-        $sql = "INSERT INTO user (username, firstname, lastname, phone, email, passkey) VALUES ('$username', '$firstname', '$lastname', '$phone', '$email', '$passkey')";
+        $sql = "INSERT INTO user (username, firstname, lastname, phone, email, passkey, faculty) VALUES ('$username', '$firstname', '$lastname', '$phone', '$email', '$passkey', '$faculty')";
     
         $rs = mysqli_query($con, $sql);
         if($rs)
@@ -38,7 +39,7 @@
 
     if(isset($_POST['loginSubmit'])) {
         $username = $_POST['username'];
-        $password = $_POST['loginPassword'];
+        $password = hash('ripemd160', $_POST['loginPassword']);
 
         // Query to check if user exists
         $sql = "SELECT * FROM user WHERE username = '$username' AND passkey = '$password'";
@@ -96,7 +97,7 @@
     {
         session_start();
         $userid = $_SESSION['userId'];
-        $passkey = $_POST['passkey'];
+        $passkey = hash('ripemd160', $_POST['passkey']);
 
         $sql = "Update user set passkey = '$passkey' WHERE id = '$userid'";
         $result = mysqli_query($con, $sql);

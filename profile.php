@@ -27,6 +27,7 @@
     $firstname = $res['firstname'];
     $lastname = $res['lastname'];
     $phone = $res['phone'];
+    $faculty = $res['faculty'];
     $email = $res['email'];
 
     }  
@@ -120,12 +121,16 @@
     <h3>First Name: <p><?php echo $firstname;?><p></h3>
     <h3>Second Name: <p><?php echo $lastname;?><p></h3>
     <h3>Phone Number: <p><?php echo $phone;?><p></h3>
+    <h3>Faculty: <p><?php echo $faculty;?><p></h3>
     <h3>Email: <p><?php echo $email;?><p></h3>
     <a href="changePassword.html">
       <button>Change Password</button>
     </a>
     <a href="login.html">
       <button>Logout</button>
+    </a>
+    <a href="dashboard.html">
+      <button>Back To Dashboard</button>
     </a>
     
   <form action="db.php" method="post">
